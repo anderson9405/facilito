@@ -19,8 +19,15 @@ class User extends Authenticatable
      */
     protected $fillable = [
         'name',
+        'lastname',
         'email',
         'password',
+        'birthday',
+        'phone',
+        'photo',
+        'address',
+        'status',
+        'role_id',
     ];
 
     /**
@@ -42,4 +49,18 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+    //Relaciones
+    public function role(){
+        return $this->belongsTo('App\Models\Role');
+    }
+
+    public function products(){
+        return $this->hasMany('App\Models\Product');
+    }
+
+
+
+
+
 }
