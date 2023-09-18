@@ -19,9 +19,9 @@ return new class extends Migration
             $table->string('password');
             $table->date('birthday');
             $table->string('phone');
-            $table->string('photo')->default('no-photo.jpg');;
+            $table->string('photo')->default('no-photo.jpg');
             $table->string('address');
-            $table->boolean('status');
+            $table->boolean('status')->default(1);
 
 
             //foreign keys
