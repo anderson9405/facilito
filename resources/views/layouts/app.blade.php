@@ -7,11 +7,17 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>@yield('title')</title>
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
+
+    {{-- styles --}}
+    <link rel="stylesheet" href="{{ asset('css/custom.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/fontawesome-all.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/owl.carousel.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/owl.theme.default.css') }}">
 
     <!-- Scripts -->
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
@@ -24,5 +30,69 @@
             @yield('content')
         </main>
     </div>
+
+      {{-- scripts --}}
+      <script src="{{ asset('js/custom.js') }}"></script>
+      <script src="{{ asset('js/jquery.js') }}"></script>
+      <script src="{{ asset('js/owl.carousel.min.js') }}"></script>
+      <script src="{{ asset('js/sweetalert2@11.js') }}"></script>
+
+      <script>
+        $(document).ready(function(){
+    
+            $('#photo').change(function(event){
+                let reader= new FileReader();
+                reader.onload = function(event){
+                    $('#preview').attr('src',event.target.result);
+                }
+                reader.readAsDataURL(this.files[0]);
+            });
+    
+    
+            $('.btn-delete').click(function(event){
+    
+                Swal.fire({
+                    icon: 'error',
+                    title: '¿Está seguro?',
+                    text: '¿Desea eleminiar este registro?',
+                    showCancelButton: true,
+                    cancelButtonColor: '#D0211C',
+                    cancelButtonText: 'Cancelar',
+                    confirmButtonColor: '#336180',
+                    confirmButtonText: 'Aceptar'
+                }).then((result)=>{
+                    if (result.value) {
+                        $(this).parent().submit();
+                    }
+                });
+    
+    
+            });
+    
+            @if(session('message'))
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Felicitaciones',
+                    text: '{{ session('message') }}',
+                    confirmButtonColor: '#336180',
+                    confirmButtonText: 'Aceptar'
+                })
+            @endif
+    
+            @if(session('error'))
+                Swal.fire({
+                    position: 'top-end',
+                    icon: 'error',
+                    title: 'Acceso denegado',
+                    text: '{{ session('error') }}',
+                    showConfirmButton:false,
+                    timer: 2500
+                })
+            @endif
+    
+        });
+    
+        </script>
+
 </body>
 </html>

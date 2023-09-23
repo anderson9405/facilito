@@ -23,7 +23,6 @@ class ProductFactory extends Factory
             'brand'=> fake()->company(),
             'price'=>fake()->numberBetween($min = 1000, $max = 200000),
             'image'=>fake()->imageUrl(400, 200, 'Product'),
-            'status'=> 1,
             'stock'=>fake()->numberBetween($min = 0, $max = 100),
             'slide'=>0,
             'category_id'=>fake()->numberBetween($min = 1, $max = 10),

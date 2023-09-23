@@ -13,15 +13,13 @@ return new class extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('lastname');
+            $table->string('fullname');
             $table->string('email')->unique();
             $table->string('password');
             $table->date('birthday');
             $table->string('phone');
             $table->string('photo')->default('no-photo.jpg');
             $table->string('address');
-            $table->boolean('status')->default(1);
 
 
             //foreign keys

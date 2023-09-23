@@ -20,8 +20,7 @@
             @foreach ($users as $user)
             <tr>
                 <th>{{ $user->id }}</th>
-                <td>{{ $user->name }}</td>
-                <td>{{ $user->lastname }}</td>
+                <td>{{ $user->fullname }}</td>
                 <td>{{ $user->email }}</td>
                 <td>{{ $user->phone }}</td>
                 <td>{{ $user->photo }}</td>

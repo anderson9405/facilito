@@ -14,28 +14,24 @@ class UserSeeder extends Seeder
     public function run(): void
     {
         $user = new User;
-        $user->name = 'Jhon Anderson';
-        $user->lastname = 'Giraldo Tabarez';
+        $user->fullname = 'Jhon Anderson Giraldo Tabarez';
         $user->email = 'anderson052594@gmail.com';
         $user->password = '1234';
         $user->birthday = '1994-05-25';       
         $user->phone = '3148898381';
         $user->photo = 'images/nophoto.png';
         $user->address = 'Cra 35C N 99-99';
-        $user->status = 1;
         $user->role_id= 1;
         $user->save();
 
         $user = new User;
-        $user->name = 'Ash';
-        $user->lastname = 'Ketchum';
+        $user->fullname = 'Ash Ketchum';
         $user->email = 'ash@gmail.com';
         $user->password = '12345678';
         $user->birthday = '1994-05-26';       
         $user->phone = '3148898382';
         $user->photo = 'images/nophoto.png';
         $user->address = 'Cra 35C N 99-100';
-        $user->status = 1;
         $user->role_id= 2;
         $user->save();
 

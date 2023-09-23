@@ -18,9 +18,8 @@ return new class extends Migration
             $table->string('brand');
             $table->float('price');
             $table->string('image')->default('no-image.jpg');
-            $table->binary('status')->default(1);
             $table->integer('stock')->default(0);
-            $table->binary('slide')->default(0);
+            $table->binary('slide');
 
             //foreign keys
             $table->unsignedBigInteger('category_id');

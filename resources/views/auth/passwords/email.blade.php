@@ -1,11 +1,16 @@
 @extends('layouts.app')
+@section('title', 'Recuperar contraseña')
 
 @section('content')
-<div class="container">
+<div class="container" style="margin-top:5%;">
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">{{ __('Reset Password') }}</div>
+                <div class="card-header-facilito text-uppercase text-center">
+                    <h5>
+                        Recuperar contraseña
+                    </h5>    
+                </div>
 
                 <div class="card-body">
                     @if (session('status'))
@@ -32,11 +37,10 @@
                         </div>
 
                         <div class="row mb-0">
-                            <div class="col-md-6 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
-                                    {{ __('Send Password Reset Link') }}
-                                </button>
-                            </div>
+                            <button type="submit" class="btn btn-novatv btn-primary text-uppercase" style="background-color: #1F618D">
+                                Enviar correo de recuperación
+                                <i class="fa fa-arrow-circle-right"></i>
+                            </button> 
                         </div>
                     </form>
                 </div>
