@@ -6,6 +6,7 @@ use App\Http\Requests\UserRequest;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Role;
+use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
@@ -14,6 +15,10 @@ class UserController extends Controller
      */
     public function index()
     {
+        if(Auth::user()->role->name != 'Administrador'){
+            return redirect('home')->with('error','No puede acceder a este recurso.');
+       }
+
         $users = User::all();
 
         $users = User::paginate(10);
@@ -25,6 +30,10 @@ class UserController extends Controller
      */
     public function create()
     {
+        if(Auth::user()->role->name != 'Administrador'){
+            return redirect('home')->with('error','No puede acceder a este recurso.');
+       }
+       
         $roles = Role::all();
         return view('elements.users.create')->with('roles',$roles);
                                             // ->with('message','Exito');
@@ -35,6 +44,10 @@ class UserController extends Controller
      */
     public function store(UserRequest $request)
     {
+        if(Auth::user()->role->name != 'Administrador'){
+            return redirect('home')->with('error','No puede acceder a este recurso.');
+       }
+
         $user = new User;
         $user->fullname = $request->fullname;
         $user->email = $request->email;
@@ -58,6 +71,10 @@ class UserController extends Controller
      */
     public function show(string $id)
     {
+        if(Auth::user()->role->name != 'Administrador'){
+            return redirect('home')->with('error','No puede acceder a este recurso.');
+       }
+
         $user = User::find($id);
         return view('elements.users.show')->with('user',$user);
     }
@@ -67,6 +84,10 @@ class UserController extends Controller
      */
     public function edit(string $id)
     {
+        if(Auth::user()->role->name != 'Administrador'){
+            return redirect('home')->with('error','No puede acceder a este recurso.');
+       }
+
         $user = User::find($id);
         $roles = Role::all();
         return view('elements.users.edit')->with('user',$user)->with('roles',$roles);
@@ -78,6 +99,10 @@ class UserController extends Controller
      */
     public function update(Request $request, string $id)
     {
+        if(Auth::user()->role->name != 'Administrador'){
+            return redirect('home')->with('error','No puede acceder a este recurso.');
+       }
+
         $user = User::find($id);
         $user->fullname = $request->fullname;
         $user->email = $request->email;
@@ -101,6 +126,10 @@ class UserController extends Controller
      */
     public function destroy(User $user)
     {
+        if(Auth::user()->role->name != 'Administrador'){
+            return redirect('home')->with('error','No puede acceder a este recurso.');
+       }
+       
         $file=public_path().'/'.$user->photo;
         if (!str_contains($user->photo, 'https') && getimagesize($file) && $user->photo != 'images/no-profile.png') {
             unlink($file);

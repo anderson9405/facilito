@@ -5,7 +5,7 @@
 
     <div class="row">
         <div class="col-md-10 offset-md-1">
-            <h1 style="color: #0B5345 ;"><i class="fa fa-users"></i>Lista de usuarios</h1>
+            <h1 style="color: #0B5345"><i class="fa fa-users"></i>Lista de usuarios</h1>
             <a href="{{ route('users.create') }}" class="btn btn-primary my-3" style="color: black; background-color: #F1C40F ; border-color:#a48711">
                 <i class="fa fa-plus pr-2"></i>
                 Agregar usuario
@@ -44,7 +44,7 @@
                                         <form action="{{ route('users.destroy', $user) }}" method="post" class="d-inline">
                                             @csrf
                                             @method('delete')
-                                            <button type="button" class="btn btn-sm btn-light btn-delete">
+                                            <button type="button" class="btn btn-sm btn-danger btn-delete">
                                                 <i class="fa fa-trash"></i>
                                             </button>
                                         </form>

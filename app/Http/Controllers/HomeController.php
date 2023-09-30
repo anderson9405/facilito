@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
+use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -14,7 +16,7 @@ class HomeController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth');
+        $this->middleware('auth', ['except' => ['welcome','filter']]);;
     }
 
     /**
@@ -32,4 +34,36 @@ class HomeController extends Controller
             return view('dashboard-customer');
         }
     }
+
+
+    public function welcome()
+    {
+        $products= Product::All();
+        $categories =Category::All();
+        $slider_products = Product::where('slide','Si')->get();
+
+        return view('welcome')->with('products', $products)
+                                ->with('categories', $categories)
+                                ->with('slider_products', $slider_products);
+
+    }
+
+
+    public function filter(Request $request){
+        if($request->category_id >= 0){
+            $products = Product::where('category_id',$request->category_id)->get();
+            $categories = Category::where('id',$request->category_id)->get();
+
+        }else{
+            $products = Product::all();
+            $categories = Category::all();
+        }
+
+        return view('filter')->with('products',$products)
+                            ->with('categories', $categories);
+    }
+
+
+
+
 }

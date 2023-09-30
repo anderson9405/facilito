@@ -20,7 +20,7 @@ class RecordFactory extends Factory
             'price'=>fake()->numberBetween($min = 1000, $max = 200000),
             'quantity'=>fake()->numberBetween($min = 1, $max = 10),
             'sale_id'=>fake()->numberBetween($min = 1, $max = 20),
-            'product_id'=>fake()->numberBetween($min = 1, $max = 50),
+            'product_id'=>fake()->numberBetween($min = 1, $max = 30),
         ];
     }
 }

@@ -51,7 +51,6 @@
                             </span>
                         @enderror
                     </div>
-
                 </div>
 
                 <div class="mb-3">
@@ -150,7 +149,11 @@
                 </div>
 
                 <div class="d-grid gap-2 mb-3">
-                    <button type="submit" class="btn btn-primary btn-block" style="background-color: #117864; border-color:#0c5e4e">Agregar <i class="fa fa-save mx-2"></i></button>
+                    <button type="submit" class="btn btn-primary btn-block" style="background-color: #117864; border-color:#0c5e4e"><i class="fa fa-save mx-2"></i>Agregar usuario</button>
+                </div>
+
+                <div class="d-grid gap-2 mb-3">
+                    <a href="{{ route('users.index') }}" class="btn btn-primary btn-block" style="background-color: #08a117; border-color:#0c5e4e"><i class="fa fa-arrow-left mx-2"></i> Volver</a>
                 </div>
 
             </form>

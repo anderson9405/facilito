@@ -19,7 +19,7 @@ return new class extends Migration
             $table->float('price');
             $table->string('image')->default('no-image.jpg');
             $table->integer('stock')->default(0);
-            $table->binary('slide');
+            $table->enum('slide', ['Si', 'No']);;
 
             //foreign keys
             $table->unsignedBigInteger('category_id');

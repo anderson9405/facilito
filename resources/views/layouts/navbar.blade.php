@@ -1,7 +1,7 @@
 <nav class="navbar navbar-expand-md navbar-dark bg-facilito shadow-sm">
     <div class="container">
         <a class="navbar-brand m-0" style="font-size: 1.8rem; padding: 0px" href="{{ url('/home') }}">
-            <img class="mb-1" src="{{ asset('images/logo.png') }}" alt="logo" width="40px">   Facilito
+            <img class="mb-1" src="{{ asset('images/logo.png') }}" alt="logo" width="40px">   Supermercado Facilito
         </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
             <span class="navbar-toggler-icon"></span>
@@ -41,10 +41,47 @@
                     </a>
 
                     <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                        @if (Auth::user()->role->name == "Administrador")
+                            
+                            <a href="{{ url('users') }}" class="dropdown-item">
+                                <i class="fa fa-users" style="margin-right: 5px"></i>
+                                Administrar usuarios
+                            </a>
+
+                            <a href="{{ url('categories') }}" class="dropdown-item">
+                                <i class="fa fa-list-alt" style="margin-right: 5px"></i>
+                                Administrar categorías
+                            </a>
+
+                            <a href="{{ url('products') }}" class="dropdown-item">
+                                <i class="fa fa-cart-shopping" style="margin-right: 5px"></i>
+                                Administrar productos
+                            </a>
+
+                        @endif
+
+                    @if (Auth::user()->role->name == "Vendedor")
+
+                        <a href="{{ url('products') }}" class="dropdown-item">
+                            <i class="fa fa-cart-shopping" style="margin-right: 5px"></i>
+                            Administrar mis productos
+                        </a>
+
+                    @endif
+
+                    @if (Auth::user()->role->name == "Cliente")
+
+                    <a href="{{ url('cart') }}" class="dropdown-item">
+                        <i class="fa fa-cart-shopping" style="margin-right: 5px"></i>
+                        Ir al carrito
+                    </a>
+
+                    @endif
+                        
                         <a class="dropdown-item" href="{{ route('logout') }}"
                            onclick="event.preventDefault();
                                          document.getElementById('logout-form').submit();">
-                            Cerrar cesión
+                            <i class="fa-solid fa-right-from-bracket" style="margin-right: 15px; color:rgb(162, 19, 19)"></i>Cerrar cesión
                         </a>
 
                         <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">

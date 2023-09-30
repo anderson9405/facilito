@@ -17,10 +17,14 @@ class Favorite extends Model
     //Relaciones
 
     public function product(){
+        return $this->belongsTo('App\Models\Product');
+    }
+
+    public function user(){
         return $this->belongsTo('App\Models\User');
     }
 
     public function transaction(){
-        return $this->belongsTo('App\Models\Product');
+        return $this->belongsTo('App\Models\Transaction');
     }
 }

@@ -34,4 +34,9 @@ class Product extends Model
         return $this->hasMany('App\Models\Record');
     }
 
+    public function favorites()
+    {
+        return $this->hasMany('App\Models\Favorite');
+    }
+
 }

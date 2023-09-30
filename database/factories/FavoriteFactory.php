@@ -18,7 +18,7 @@ class FavoriteFactory extends Factory
     {
         return [
             'user_id'=>fake()->numberBetween($min = 1, $max = 22),
-            'product_id'=>fake()->numberBetween($min = 1, $max = 50),
+            'product_id'=>fake()->numberBetween($min = 1, $max = 30),
         ];
     }
 }

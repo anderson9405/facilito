@@ -4,7 +4,7 @@
 @section('content')
     
     <div class="row">
-        <div class="col-md-10 offset-md-1">
+        <div class="col-md-12">
             <div class="card">
                 <img class="my-2 img-top-card" width="300px" src="{{ asset('images/elements/dashboard.svg') }}" alt="img-dasboard">
                 <div class="card-header-facilito text-center">
@@ -19,15 +19,26 @@
                 </div>  
                 
                 <div class="card-body row">
-                {{--  --}}
 
-                    <div class="col-md-4 my-4">
+                <div class="col-md-3 my-4">
                         <div class="card text-center">
-                            <a href=""><img class="image-card m-2" src="{{ asset('images/elements/products.png') }}" alt="products" width="218px" class="my-2 img-top-card"></a>
+                            <a href="{{ route('products.index') }}"><img class="image-card m-2" src="{{ asset('images/elements/products.png') }}" alt="products" width="218px" class="my-2 img-top-card"></a>
                             <div class="card-body">
-                                <a href="#" class="btn btn-primary btn-block" style="color: black; background-color: #F1C40F ; border-color:#a48711">
+                                <a href="{{ route('products.index') }}" class="btn btn-primary btn-block" style="color: black; background-color: #F1C40F ; border-color:#a48711">
                                     <i class="fa fa-cart-shopping"></i>
                                     Administrar mis productos
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-3 my-4">
+                        <div class="card text-center">
+                            <a href="{{ route('welcome') }}"><img class="image-card m-2" src="{{ asset('images/elements/store.jpg') }}" alt="users" width="234px" class="my-2 img-top-card"></a>
+                            <div class="card-body">
+                                <a href="{{ route('welcome') }}" class="btn btn-primary btn-block"  style="color: black; background-color: #F1C40F ; border-color:#a48711 ">
+                                    <i class="fa-solid fa-store"></i>
+                                    Ir a la tienda
                                 </a>
                             </div>
                         </div>

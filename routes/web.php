@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\ProductController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -15,9 +17,11 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
+
+Route::get('/', [App\Http\Controllers\HomeController::class, 'welcome'])->name('welcome');
 
 
 Route::get('/test', [App\Http\Controllers\TestController::class, 'test']);
@@ -30,7 +34,12 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 Route::resources([
     'users'=> UserController::class,
-    // 'categories'=> CategorieController::class,
-    // 'movies'=> MovieController::class,
-
+    'categories'=> CategoryController::class,
+    'products'=> ProductController::class,
 ]);
+
+// Filter
+Route::post('category/filter', [App\Http\Controllers\HomeController::class, 'filter'])->name('filter');
+
+Route::post('cart', [App\Http\Controllers\FavoriteController::class, 'store'])->name('cart');
+Route::get('cart', [App\Http\Controllers\FavoriteController::class, 'index'])->name('get_cart');

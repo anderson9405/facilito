@@ -26,7 +26,7 @@
     <div id="app">
         @include('layouts.navbar')
 
-        <main class="py-4">
+        <main class="container mt-5">
             @yield('content')
         </main>
     </div>
@@ -37,10 +37,39 @@
       <script src="{{ asset('js/owl.carousel.min.js') }}"></script>
       <script src="{{ asset('js/sweetalert2@11.js') }}"></script>
 
-      <script>
+    <script>
         $(document).ready(function(){
-    
+
+            $('.owl-carousel').owlCarousel({
+            loop:true,
+            margin:10,
+            nav:true,
+            responsive:{
+                0:{
+                    items:1
+                },
+                600:{
+                    items:2
+                },
+                1000:{
+                    items:3
+                }
+            }
+            }); 
+
+            // Mostrar el precio con separador de miles
+            // const price = document.getElementById('price');
+            // price.value = parseFloat(price.value).toLocaleString("de-DE");            
+            
             $('#photo').change(function(event){
+                let reader= new FileReader();
+                reader.onload = function(event){
+                    $('#preview').attr('src',event.target.result);
+                }
+                reader.readAsDataURL(this.files[0]);
+            });
+
+            $('#image').change(function(event){
                 let reader= new FileReader();
                 reader.onload = function(event){
                     $('#preview').attr('src',event.target.result);
@@ -81,7 +110,7 @@
     
             @if(session('error'))
                 Swal.fire({
-                    position: 'top-end',
+                    // position: 'top-end',
                     icon: 'error',
                     title: 'Acceso denegado',
                     text: '{{ session('error') }}',
@@ -89,10 +118,32 @@
                     timer: 2500
                 })
             @endif
+
+
+            // ------- //
+
+            $('#filter').change(function(event){
+                    event.preventDefault();
+                    option = $(this).val();
+                    $t = $('meta[name="csrf-token"]').attr('content')
+                    $('.loader').removeClass('d-none');
+                    $('#list-filter').hide();
+                    $sto = setTimeout(function(){
+
+                        clearTimeout($sto);
+                        console.log(option);
+                        $.post('category/filter', {category_id: option, _token: $t}, function(data){
+                            $('.loader').addClass('d-none');
+                            $('#list-filter').html(data);
+                            $('#list-filter').fadeIn('slow');
+                        });
+
+                    },1000);
+            });                
     
         });
     
-        </script>
+    </script>
 
 </body>
 </html>
