@@ -1,0 +1,192 @@
+---- Laravel commands
+
+* laravel instalation
+- composer global require laravel/installer
+
+* Project creation
+- laravel new novatv
+
+
+---- GIT commands
+
+* Initialize reporitory
+- git init
+
+* Save stage changes
+- git add .
+
+* Save version
+- git commit -m "vesión #1"
+
+* Save version on github
+- git remote add origin git@github.com:anderson9405/<projectname>.git
+- git push -u origin main
+
+
+++++ Clonar el repositorio de github
+git clone git@github.com:anderson9405/novatv.git
+
+volver a instalar los paquetes de laravel
+composer install
+
+volver a instalar paquetes de laravel
+npm install
+
+volver a hacer el .env
+cp .env.example .env
+
+
+---- Artisan commands
+
+* Artisan: Software that allows to use laravel from command line 
+
+* Execute migration
+- php artisan migrate
+
+* Other migration functions
+- php artisan migrate:fresh           Drop all tables and re-run all migrations
+- php artisan migrate:install         Create the migration repository
+- php artisan migrate:refresh         Reset and re-run all migrations
+- php artisan migrate:reset           Rollback all database migrations
+- php artisan migrate:rollback        Rollback the last database migration
+- php artisan migrate:status          Show the status of each migration
+
+* Create seeders
+
+  To declare it on laravel
+- php artisan make:seeder RoleSeeder //Siempre 'seeder' al final
+- php artisan make:seeder UserSeeder //Siempre 'seeder' al final
+
+  it should be related in DatabaseSeeder.php like this:
+- $this->call(CategorySeeder::class);
+
+  The faker options can be consulted on
+- https://packagist.org/packages/fzaninotto/faker#user-content-formatters
+
+  To migrate them to database
+- php artisan db:seed
+- php artisan migrate:fresh --seed 
+
+
+* Create a model
+- php artisan make:model Role
+- php artisan make:model Category
+
+* Open console interface
+- php artisan tinker
+
+* Create a migration
+- php artisan make:migration create_roles_table
+
+* Create a request
+- php artisan make:request UserRequest
+- php artisan make:request CategoryRequest
+
+---- Controllers
+* Create a controller
+- php artisan make:controller UserController  // it is on app/http/...
+- php artisan make:controller TestController
+
+or (if it is a resource)->(if it require CRUD)
+- php artisan make:controller UserController --resource
+- php artisan make:controller CategoryController --resource
+- php artisan make:controller MovieController --resource
+
+
+* Create key
+- php artisan key:generate
+
+* Clean caché
+- php artisan optimize
+
+
+---- Routes
+* listing active routes
+- php artisan route:list // php artisan r:l
+
+* clean caché
+- php artisan route:clear -h
+
+* save caché
+- php artisan route: chache
+
+
+---- Factories creation 
+
+* Documentation
+https://packagist.org/packages/fzaninotto/faker#user-content-formatters
+
+* Create a factory
+- php artisan make:factory UserFactory --model=User;
+- php artisan make:factory MovieFactory --model=Movie;
+
+
+
+
+
+---- Bootstrap and login installation // Laravel Mixing
+* Install user interface tool
+- composer require laravel/ui
+
+* Install bootstrap
+ php artisan ui bootstrap         //without login
+ php artisan ui bootstrap --auth  //with login
+
+
+* Node instalation and server
+npm install
+npm run dev
+
+
+
+---- Libraries download
+
+Create JS, CSS, images, webfonts on public
+
+* JS folder should have
+sweetalert2@11.js
+owl.carousel.min.js
+jquery.js
+
+* CSS folfer should have
+owl.carousel.min.css
+owl.theme.default.css
+fontawesome-all.min.css
+
+* download sweet alert
+Descargar el contenido de https://cdn.jsdelivr.net/npm/sweetalert2@11
+
+* download owl carousel
+https://owlcarousel2.github.io/OwlCarousel2/    //Downdloads // dist
+
+* download font awesome
+https://fontawesome.com/download    //take the webfonts from download
+
+* download jquery
+https://code.jquery.com/jquery-3.7.1.min.js // create a jquery.js with content
+
+
+
+---- ORM commands
+
+++++  CREATE
+$user->email = 'homero@gmail.com';
+$user->save();
+
+++++ UPDATE
+$user= User::find(id);
+$user->email = 'homero@gmail.com';
+$user->save();
+
+++++ READ
+$users = User::all(); //obtiene todos los registros 
+$user = User::find(3); // Obtiene un registro específico
+$users = User::find([1,2,3]); //Obtiene varios registros
+$count = User::count(); //Obtiene la cantidad de usuarios
+
+++++ DELETE
+$user= User::find(id);
+$user->delete();
+
+
+

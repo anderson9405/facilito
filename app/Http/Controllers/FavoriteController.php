@@ -22,8 +22,14 @@ class FavoriteController extends Controller
     {
         if(Auth::user()->role->name == "Cliente"){
 
-            $favorites = Favorite::where('user_id', Auth::user()->id);
+            $favorites = Favorite::where('user_id', Auth::user()->id)->get();
             $product_ids = $favorites->pluck('product_id');
+
+            // código profe
+            // foreach ($favorites as $favorite) {
+            //     dd($favorite->product->name);
+            // }
+
             $products = [];
             $total = 0;
             
