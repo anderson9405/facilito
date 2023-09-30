@@ -41,5 +41,6 @@ Route::resources([
 // Filter
 Route::post('category/filter', [App\Http\Controllers\HomeController::class, 'filter'])->name('filter');
 
+
 Route::post('cart', [App\Http\Controllers\FavoriteController::class, 'store'])->name('cart');
 Route::get('cart', [App\Http\Controllers\FavoriteController::class, 'index'])->name('get_cart');

@@ -13,7 +13,7 @@
                         Escritorio
                         |
                         <small>
-                            <i class="fa fa-user-ninja"></i> Administrador
+                            <i class="fa fa-user-ninja"></i>Cliente
                         </small>
                     </h4>
                 </div>  
